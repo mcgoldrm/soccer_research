@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,7 @@
   #listView th.sorted::after { content:' \25be'; }
   #listView th.sorted.asc::after { content:' \25b4'; }
   #listView tbody tr:hover { background:#f0f6ff; cursor:pointer; }
-  #filtersToggle { display:none; position:absolute; top:10px; right:10px; z-index:10001; }
+  #filtersToggle { display:none; position:absolute; top:10px; left:10px; z-index:10001; }
   @media (max-width:640px) {
     .filter-panel { max-width:88vw; max-height:70vh; overflow-y:auto; }
     .filter-panel.hidden-mobile { display:none; }
@@ -424,6 +425,7 @@ document.querySelectorAll('#listView th').forEach(th=>{
 });
 
 document.getElementById('listBody').addEventListener('click', (e)=>{
+  if(e.target.closest('a')) return;
   const tr=e.target.closest('tr'); if(!tr) return;
   const key=tr.dataset.key;
   const m=markers.find(mk=>((mk.meta.unitid||'')+'|'+mk.meta.name)===key);
